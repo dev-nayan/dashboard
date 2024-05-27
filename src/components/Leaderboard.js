@@ -38,8 +38,8 @@ function LeaderBoard({mode}) {
             <p className="text-xl text-gray-500">Live Tracker</p>
           </div>
           <div className="flex items-center border-2 h-10 rounded-lg overflow-hidden">
-            <p className={`border-r-2 ${mode===true ?"bg-black-400": "bg-gray-400 text-red-600"} px-4 h-full flex items-center`}>Slippage</p>
-            <select defaultValue={0} className={`px-4 outline-none h-full ${mode===true ? "text-black": "text-black"}`}>
+            <p className={`border-r-2 ${mode===true ?"bg-black-400": "bg-gray-300 text-white-600"} px-4 h-full flex items-center`}>Slipage</p>
+            <select defaultValue={0} className={`px-4 outline-none h-full ${mode===true ? "text-white bg-gray-900": "text-black"}`}>
               <option value={0}>0%</option>
               <option value={0.5}>0.5%</option>
               <option value={1}>1%</option>
@@ -69,7 +69,7 @@ function LeaderBoard({mode}) {
               return (
                 <div
                   key={index}
-                  className={`flex justify-between px-4 py-2 gap-2 ${index % 2 === 0 ? "" : `bg-gray-200 rounded-lg ${mode===true? " text-black":"text-black"}`
+                  className={`flex justify-between px-4 py-2 gap-2 ${index % 2 === 0 ? "" : `bg-gray-200 rounded-lg ${mode===true? " text-white bg-gray-900":"text-black"}`
                     }`}
                 >
                   {headers.map((header, ind) => {
