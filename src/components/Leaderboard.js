@@ -6,6 +6,7 @@ import {
   LineChart,
   TrendingUp,
   WholeWord,
+  Table
 } from "lucide-react";
 
 const headers = [
@@ -21,18 +22,24 @@ const headers = [
 
 const imgName = ['Terry', 'Sheldon', 'Terrill', 'Miles', 'Mavis', 'Alison', 'Oleta', 'Ewell', 'Demetrius', 'Eleanora', 'Marcel', 'Assunta', 'Trace', 'Enoch', 'Jeanne', 'Trycia', 'Bradford', 'Arely', 'Gust', 'Lenna', 'Doyle', 'Tressa', 'Felicity', 'Jocelyn', 'Edwina', 'Griffin', 'Piper', 'Kody', 'Macy', 'Maurine']
 
-function LeaderBoard() {
+function LeaderBoard({mode}) {
   return (
+    <>
+    
+  <h1 className="font-bold mt-5 text-4xl border-b-red-600 border-b-2"><span className="absolute left-[39.5rem] top-[14.2rem]"><Table size={32} /></span>Dashboard</h1>
+     
+        
+
     <div className="h-screen w-screen overflow-hidden">
       <div className="m-10 flex flex-col items-center justify-center border-[2px] rounded-lg shadow-md gap-2">
         <div className="w-full flex px-8 py-4 justify-between items-end">
           <div className="flex flex-col">
-            <p className="text-3xl font-semibold text-gray-700">Basic Backtest</p>
-            <p className="text-xl text-gray-500">Your mock data is available here</p>
+            <p className={`text-3xl font-semibold  ${mode===true? "text-white-600" : "text-gray-700"}`}> Backtest</p>
+            <p className="text-xl text-gray-500">Live Tracker</p>
           </div>
           <div className="flex items-center border-2 h-10 rounded-lg overflow-hidden">
-            <p className="border-r-2 bg-gray-400 px-4 h-full flex items-center">Slippage</p>
-            <select defaultValue={0} className="px-4 outline-none h-full">
+            <p className={`border-r-2 ${mode===true ?"bg-black-400": "bg-gray-400 text-red-600"} px-4 h-full flex items-center`}>Slippage</p>
+            <select defaultValue={0} className={`px-4 outline-none h-full ${mode===true ? "text-black": "text-black"}`}>
               <option value={0}>0%</option>
               <option value={0.5}>0.5%</option>
               <option value={1}>1%</option>
@@ -62,19 +69,19 @@ function LeaderBoard() {
               return (
                 <div
                   key={index}
-                  className={`flex justify-between px-4 py-2 gap-2 ${index % 2 === 0 ? "" : "bg-gray-200 rounded-lg"
+                  className={`flex justify-between px-4 py-2 gap-2 ${index % 2 === 0 ? "" : `bg-gray-200 rounded-lg ${mode===true? " text-black":"text-black"}`
                     }`}
                 >
                   {headers.map((header, ind) => {
                     const Icon = header.icon || null;
                     if (header.title === "Action")
                       return (
-                        <p className={`flex-1 text-center  ${data[header.title] ? "text-green-500" : "text-blue-400"}`}>
+                        <p key={ind} className={`flex-1 text-center  ${data[header.title] ? "text-green-600" : "text-red-400"}`}>
                           {data[header.title] ? "Buy" : "View"}
                         </p>
                       );
                     return (
-                      <p
+                      <div
                         key={ind}
                         className={`${ind === 0 ? "w-8" : "flex-1 "} ${ind > 1 ? "text-center justify-center" : ""
                           } flex items-center gap-2`}
@@ -85,7 +92,7 @@ function LeaderBoard() {
                         }
                         {Icon && ind > 1 && <Icon size={16} className={header.color} />}
                         {data[header.title]}
-                      </p>
+                      </div>
                     );
                   })}
                 </div>
@@ -95,6 +102,8 @@ function LeaderBoard() {
         </div>
       </div>
     </div>
+    </>
+ 
   );
 }
 
